@@ -41,3 +41,11 @@ PRIVATE_KEY_ANVIL_0 := 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7
 NETWORK_ARGS_ANVIL := --rpc-url http://localhost:8545 --private-key $(PRIVATE_KEY_ANVIL_0) --broadcast
 
 NETWORK_ARGS_SEPOLIA := --rpc-url $(RPC_URL_SEPOLIA) --account $(ACCOUNT_DEV) --sender $(PUBLIC_KEY_DEV) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY) -vvvv
+
+DEPLOY_SCRIPT := forge script script/DeployBasicNft.s.sol:DeployBasicNft
+
+deploy:
+	@$(DEPLOY_SCRIPT) $(NETWORK_ARGS_ANVIL)
+
+deploy-sepolia:
+	@$(DEPLOY_SCRIPT) $(NETWORK_ARGS_SEPOLIA)
