@@ -44,8 +44,16 @@ NETWORK_ARGS_SEPOLIA := --rpc-url $(RPC_URL_SEPOLIA) --account $(ACCOUNT_DEV) --
 
 DEPLOY_SCRIPT := forge script script/DeployBasicNft.s.sol:DeployBasicNft
 
+MINT_SCRIPT := forge script script/Interactions.s.sol:MintBasicNft
+
 deploy:
 	@$(DEPLOY_SCRIPT) $(NETWORK_ARGS_ANVIL)
 
 deploy-sepolia:
 	@$(DEPLOY_SCRIPT) $(NETWORK_ARGS_SEPOLIA)
+
+mint:
+	@$(MINT_SCRIPT) $(NETWORK_ARGS_ANVIL)
+
+mint-sepolia:
+	@$(MINT_SCRIPT) $(NETWORK_ARGS_SEPOLIA)
