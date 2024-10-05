@@ -43,10 +43,12 @@ NETWORK_ARGS_ANVIL := --rpc-url http://localhost:8545 --private-key $(PRIVATE_KE
 NETWORK_ARGS_SEPOLIA := --rpc-url $(RPC_URL_SEPOLIA) --account $(ACCOUNT_DEV) --sender $(PUBLIC_KEY_DEV) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY) -vvvv
 
 DEPLOY_BASIC_NFT := forge script script/DeployBasicNft.s.sol:DeployBasicNft
-
 DEPLOY_MOOD_NFT := forge script script/DeployMoodNft.s.sol:DeployMoodNft
 
 MINT_BASIC_NFT := forge script script/Interactions.s.sol:MintBasicNft
+MINT_MOOD_NFT := forge script script/Interactions.s.sol:MintMoodNft
+
+FLIP_MOOD_NFT := forge script script/Interactions.s.sol:FlipMoodNft
 
 deploy-basic:
 	@$(DEPLOY_BASIC_NFT) $(NETWORK_ARGS_ANVIL)
@@ -65,3 +67,15 @@ mint-basic:
 
 mint-basic-sepolia:
 	@$(MINT_BASIC_NFT) $(NETWORK_ARGS_SEPOLIA)
+
+mint-mood:
+	@$(MINT_MOOD_NFT) $(NETWORK_ARGS_ANVIL)
+
+mint-mood-sepolia:
+	@$(MINT_MOOD_NFT) $(NETWORK_ARGS_SEPOLIA)
+
+flip-mood:
+	@$(FLIP_MOOD_NFT) $(NETWORK_ARGS_ANVIL)
+
+flip-mood-sepolia:
+	@$(FLIP_MOOD_NFT) $(NETWORK_ARGS_SEPOLIA)
