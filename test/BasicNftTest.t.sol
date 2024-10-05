@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.27;
 
-import {Test} from "forge-std/Test.sol";
+import {TestNft} from "test/Utils.sol";
 import {DeployBasicNft} from "script/DeployBasicNft.s.sol";
 import {BasicNft} from "src/BasicNft.sol";
 
-contract TestBasicNft is Test {
+contract TestBasicNft is TestNft {
     string public constant PUG_URI =
         "ipfs://bafybeig37ioir76s7mg5oobetncojcm3c3hxasyd4rvid4jqhy4gkaheg4/?filename=0-PUG.json";
 
@@ -17,10 +17,6 @@ contract TestBasicNft is Test {
         deployer = new DeployBasicNft();
         basicNft = deployer.run();
         USER = makeAddr("USER");
-    }
-
-    function assertStringEq(string memory expected, string memory actual) public pure {
-        assertEq(keccak256(abi.encodePacked(expected)), keccak256(abi.encodePacked(actual)));
     }
 
     function testNameIsCorrect() public view {
